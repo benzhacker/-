@@ -46,7 +46,7 @@ END3
 
 cd /usr/local/bin
 
-wget wget https://raw.githubusercontent.com/benzhacker/-/master/premium-script.tar.gz
+wget https://raw.githubusercontent.com/benzhacker/-/master/premium-script.tar.gz
 
 
 
