@@ -18,9 +18,13 @@ cat > /root/limit.sh <<END3
 #/usr/local/bin/user-limit
 END3
 
+apt-get -y install zip unzip
 cd /usr/local/bin
-wget -O AUTOSCRIPT.zip "https://raw.githubusercontent.com/benzhacker/-/master/AUTOSCRIPT.zip"
-tar -xvf AUTOSCRIPT.zip
+
+wget https://raw.githubusercontent.com/benzhacker/-/master/AUTOSCRIPT.zip
+
+mv AUTOSCRIPT.zip
+unzip AUTOSCRIPT.zip
 rm -f AUTOSCRIPT.zip
 
 cp /usr/local/bin/premium-script /usr/local/bin/menu
