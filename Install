@@ -130,6 +130,12 @@ newclient () {
 	echo "<ca>" >> ~/$1.ovpn
 	cat /etc/openvpn/easy-rsa/pki/ca.crt >> ~/$1.ovpn
 	echo "</ca>" >> ~/$1.ovpn
+	echo "<key>" >> ~/$1.ovpn
+	cat /etc/openvpn/easy-rsa/pki/private/$1.key >> ~/$1.ovpn
+	echo "</key>" >> ~/$1.ovpn
+	echo "<tls-auth>" >> ~/$1.ovpn
+	cat /etc/openvpn/ta.key >> ~/$1.ovpn
+	echo "</tls-auth>" >> ~/$1.ovpn
 }
 
 if [[ -e /etc/openvpn/server.conf ]]; then
@@ -414,7 +420,6 @@ resolv-retry infinite
 nobind
 persist-key
 persist-tun
-remote-cert-tls server
 auth SHA512
 cipher AES-256-CBC
 comp-lzo
@@ -494,9 +499,6 @@ END
 		apt-get -y install squid3
 		cat > /etc/squid3/squid.conf <<END
 http_port $PROXY
-http_port 3128
-http_port 8000
-http_port 80
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
 acl localnet src 10.0.0.0/8
@@ -544,9 +546,6 @@ END
 		apt-get -y install squid
 		cat > /etc/squid/squid.conf <<END
 http_port $PROXY
-http_port 3128
-http_port 8000
-http_port 80
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
 acl localnet src 10.0.0.0/8
@@ -612,7 +611,7 @@ fi
 	elif [[ "$PROTOCOL" = 'tcp' ]]; then
 		echo "Protocal : TCP"
 	fi
-	echo "Port Nginx : 85"
+	echo "Port Nginx : 80"
 	echo "IP Proxy : $IP"
 	echo "Port Proxy : $PROXY"
 	echo ""
@@ -757,9 +756,6 @@ elif [[ "$Squid" = 'Y' ]]; then
 	apt-get -y install squid3
 	cat > /etc/squid3/squid.conf <<END
 http_port $PROXY
-http_port 3128
-http_port 8000
-http_port 80
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
 acl localnet src 10.0.0.0/8
@@ -806,9 +802,6 @@ END
 	apt-get -y install squid
 	cat > /etc/squid/squid.conf <<END
 http_port $PROXY
-http_port 3128
-http_port 8000
-http_port 80
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
 acl localnet src 10.0.0.0/8
