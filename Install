@@ -76,7 +76,7 @@ clear
                               SCRIPT V.1 VIP"
 
 	echo ""
-fi
+	
 
 # Color
 GRAY='\033[1;33m'
