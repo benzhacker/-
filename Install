@@ -88,7 +88,6 @@ NC='\033[0m'
     echo "#BY FB : https://www.facebook.com/groups/456606521389706"
     echo "#Donate : TrueWallet : 080-266-2264"
     echo ""
-if [[ -e /usr/local/bin/Check-Thai ]]; then
 	echo -e "ฟังก์ชั่นสคริปท์ ${GRAY}ZENON-AUTO-VPN${NC}"
 	echo ""
 	if [[ -e /etc/openvpn/server.conf ]]; then
@@ -121,8 +120,6 @@ if [[ -e /usr/local/bin/Check-Thai ]]; then
 	read -p "เลือกหัวข้อฟังก์ชั่นที่ต้องการใช้งาน : " FUNCTIONSCRIPT
 	
 	
-
-fi
 
 case $FUNCTIONSCRIPT in
 
